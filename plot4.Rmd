@@ -1,0 +1,25 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+## Plot of MPG by Engine Displacement for `r params$cyl` Cylinders
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Hi, there. I'm a child document for `r params$cyl` Cylinders
+
+```{r}
+library(ggplot2)
+library(dplyr)
+data4 <- mtcars %>% filter(cyl == params$cyl)
+
+ggplot(data4, aes(disp, mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Plot of MPG by Engine Displacement for 4 Cylinders")
+```

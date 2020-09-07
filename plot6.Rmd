@@ -1,0 +1,25 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+## Plot of Weight by Number of Carburetors for `r params$cyl` Cylinders
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Hi, there. I'm a child document for `r params$cyl` Cylinders
+
+```{r}
+library(ggplot2)
+library(dplyr)
+data6 <- mtcars %>% filter(cyl == params$cyl)
+
+ggplot(data6, aes(carb, wt)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Plot of Weight by Number of Carburetors for 6 Cylinders")
+```

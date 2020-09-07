@@ -1,0 +1,55 @@
+---
+title: "Document with Conditional Parameters and Child Documents"
+author: "Melinda Higgins"
+date: "9/6/2020"
+output: html_document
+params:
+  cyl:
+    label: "Number of Cylinders:"
+    value: 4
+    input: select
+    choices: [4, 6, 8]
+---
+
+```{r setup, include=FALSE}
+# remember to knit with parameters
+
+# set up initial knitr options
+# echo = see or hide code the code
+knitr::opts_chunk$set(echo = FALSE)
+
+# load data - mtcars builtin dataset
+data(mtcars)
+```
+
+## overall introduction of mtcars dataset
+
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+## Custom Table of summary stats for `r params$cyl` Number of Cylinders
+
+```{r, child = if (params$cyl == 4) 'table4.Rmd'}
+# insert child document for cylinders 4
+```
+
+```{r, child = if (params$cyl == 6) 'table6.Rmd'}
+# insert child document for cylinders 4
+```
+
+```{r, child = if (params$cyl == 8) 'table8.Rmd'}
+# insert child document for cylinders 4
+```
+
+## Custom Plot for `r params$cyl` Number of Cylinders
+
+```{r, child = if (params$cyl == 4) 'plot4.Rmd'}
+# insert child document for cylinders 4
+```
+
+```{r, child = if (params$cyl == 6) 'plot6.Rmd'}
+# insert child document for cylinders 4
+```
+
+```{r, child = if (params$cyl == 8) 'plot8.Rmd'}
+# insert child document for cylinders 4
+```

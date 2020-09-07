@@ -1,0 +1,24 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+## Summary Statistics Table for `r params$cyl` Cylinders
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+Hi, there. I'm a child document for `r params$cyl` Cylinders.
+
+This table shows summary stats of Rear Axle Ratio and Quarter Mile Time
+
+```{r tablea-child, results = "asis"}
+library(arsenal)
+library(dplyr)
+data8 <- mtcars %>% filter(cyl == params$cyl)
+tab8 <- arsenal::tableby(~ drat + qsec, data = data8)
+summary(tab8)
+```
